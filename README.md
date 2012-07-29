@@ -1,4 +1,4 @@
-# BillBill - An extremely simple cacheing proxy
+# BillBill - An extremely simple caching proxy
 ## Doesn't yet work...
 
 Sits beteen the world and your website, to cache pages on the way out and serve up cached copies if available
