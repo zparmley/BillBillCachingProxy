@@ -55,10 +55,10 @@ http.createServer(function(req, res) {
 			console.log(ttl)
 			if (ttl !== false) {
 				console.log('cacheable')
-				request.get('http://www.dreamrescue.org' + req.url).pipe(res)
+				request.get('http://www.example.org' + req.url).pipe(res)
 			} else {
 				console.log('skipping')
-				request.get('http://www.dreamrescue.org' + req.url).pipe(res)
+				request.get('http://www.example.org' + req.url).pipe(res)
 			}
 		}
 	} else {
