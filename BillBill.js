@@ -12,7 +12,7 @@ var http      = require('http')
 
 var configs   = [
 	{
-		'host'    : 'www.dreamrescue.org',
+		'host'    : 'www.example.org',
 		'origin'  : '127.0.0.1:2019',
 		'ttl'     : 7200,
 		'excludes' : [
