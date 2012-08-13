@@ -6,8 +6,8 @@ BillBill should sit between the world and a website.  With some basic rules it s
 ## Raison
 + I'm learning things
 + I understand this is ridiculous, but - I am rolling out a page on a small personal project soon that invokes a rather slow 3rd party API.  Instead of writing an invoking a memcached modules for the crappy CMS it's written in, I'm doing this, because I find it more interesting.
-+ I want.  I know solutions already exist.  I don't care.
-+ Hell, with time and iterations, I don't see why I can't offer something better.
++ I want to learn more node.
++ I know solutions already exist, but hell, with time and iterations I don't see why I can't offer something better.
 
 ## Fresh slate
 Originally I was getting kind of complicated, and trying to learn a lot of new things at once.  I was using alfred, and thinking of writing a model layer that alowed requests to be streamed into a particular field of an Alfred model for cache storage.  It was all getting a bit overburdened and cumbersome.
