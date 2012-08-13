@@ -1,70 +1,41 @@
-var http      = require('http')
-  , url       = require('url')
-  , mapleTree = require('mapleTree')
-  , request   = require('request')
-  , pageCache = require('./pageCache.js')
-  ;
+var fs      = require('fs')
+var filed   = require('filed')
+var http    = require('http')
+var request = require('request')
+
+// This needs to be config'd
+var cacheDir = 'pagecache'
 
 
+// Set up the server
+http.createServer(function(req, resp) {
+    var host = req.headers['host']
+    var url  = req.url
+    var cacheFile = cacheDir + '/' + new Buffer(host + url).toString('base64')
+    
+    console.log(cacheFile)
 
+    fs.lstat(cacheFile, function(err, stats) {
+        if (!err && stats.isFile()) {
+            // Cache hit
+            filed(cacheFile).pipe(resp)
+        } else {
+            // Cache miss
 
+            // Currently a server on 2020 is waitig 3 seconds and sending a simple response, for dev
+            var originReq = request('http://localhost:2020')
+            var filedFile = filed(cacheFile)
 
+            console.log(originReq)
 
-var configs   = [
-	{
-		'host'    : 'www.example.org',
-		'origin'  : '127.0.0.1:2019',
-		'ttl'     : 7200,
-		'excludes' : [
-			'/wp-admin*',
-			'/wp-login.php'
-		]
-	}
-]
+            originReq.on('close', function() {
+                filedFile.pipe(resp)
+            })
 
-var servers = {}
-var cache = new pageCache.PageCache()
-configs.forEach(function(conf) {
-	var host    = conf.host
-	conf.router = new mapleTree.RouteTree()
+            originReq.pipe(filedFile)
+            // filed(cacheFile).pipe(resp)
+            // .pipe(resp)
+        }
+    })
 
-	conf.excludes.forEach(function(exclude) {
-		console.log('Excluding ' + exclude)
-		conf.router.define(exclude, function() {
-			return false
-		})
-	})
-
-	conf.router.define('*', function() { return conf.ttl })
-	conf.router.define('/', function() { return conf.ttl })
-
-
-	servers[host] = conf
-})
-
-
-
-http.createServer(function(req, res) {
-	console.log([req.headers.host, req.url])
-	var host = req.headers.host
-	var url = req.url
-	if (servers[host] !== undefined) {
-		match = servers[host].router.match(url)
-		if (match !== undefined) {
-			var ttl = match.fn()
-			console.log(ttl)
-			if (ttl !== false) {
-				console.log('cacheable')
-				request.get('http://www.example.org' + req.url).pipe(res)
-			} else {
-				console.log('skipping')
-				request.get('http://www.example.org' + req.url).pipe(res)
-			}
-		}
-	} else {
-		res.writeHead(200, {"Content-Type": "text/plain"});
-		res.write('nope dummy');
-		res.end();
-	}
-
-}).listen(80)
+}).listen(10001)
