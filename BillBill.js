@@ -1,3 +1,4 @@
+var async   = require('async')
 var fs      = require('fs')
 var filed   = require('filed')
 var http    = require('http')
@@ -22,19 +23,17 @@ http.createServer(function(req, resp) {
         } else {
             // Cache miss
 
-            // Currently a server on 2020 is waitig 3 seconds and sending a simple response, for dev
-            var originReq = request('http://localhost:2020')
-            var filedFile = filed(cacheFile)
+            // I'd hoped to do something a little different, namely pipe the request to multiple destinations (file and response) but alas, it is beyond me at the moment
+            // I'm a little worried about a race condition with this setup, where the request is complete but the file write is not, so an incomplete file is read and set back - not sure yet if this is a problem or best sollution
 
-            console.log(originReq)
-
-            originReq.on('close', function() {
-                filedFile.pipe(resp)
-            })
-
-            originReq.pipe(filedFile)
-            // filed(cacheFile).pipe(resp)
-            // .pipe(resp)
+            // DEV Currently a server on 2020 is waitig 3 seconds and sending a simple response, for dev
+            // Request from the origin and pipe it to the cache file
+            request('http://localhost:2020', function(e, r, b) {
+                if (!e) {
+                    // If no error, pipe the cached file back to the response object when complete
+                    filed(cacheFile).pipe(resp)
+                }
+            }).pipe(filed(cacheFile))
         }
     })
 
