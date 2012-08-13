@@ -23,9 +23,9 @@ http.createServer(function(req, resp) {
         } else {
             // Cache miss
 
-            // I'd hoped to do something a little different, namely pipe the request to multiple destinations (file and response) but alas, it is beyond me at the moment
-            // This lacks efficiency in that it reads data it technically already has out of a file
-            // I'm a little worried about a race condition with this setup, where the request is complete but the file write is not, so an incomplete file is read and set back - not sure yet if this is a problem or best sollution
+            // TODO: I'd hoped to do something a little different, namely pipe the request to multiple destinations (file and response) but alas, it is beyond me at the moment
+            // TODO: This lacks efficiency in that it reads data it technically already has out of a file
+            // TODO: I'm a little worried about a race condition with this setup, where the request is complete but the file write is not, so an incomplete file is read and set back - not sure yet if this is a problem or best sollution
 
             // DEV Currently a server on 2020 is waitig 3 seconds and sending a simple response, for dev
             // Request from the origin and pipe it to the cache file
