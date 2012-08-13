@@ -1,7 +1,7 @@
 # BillBill - An extremely simple caching proxy
 ## Doesn't yet work...
 
-BillBill should sit between the world and a website.  With some basic rules it should cache pages requested and server them up all fast like untill the cache expires. A simple config should determine which domains should be proxied, cached or passed through, and TTLs.
+BillBill should sit between the world and a website.  With some basic rules it should cache pages requested and server them up all fast like until the cache expires. A simple config should determine which domains should be proxied, cached or passed through, and TTLs.
 
 ## Raison
 + I'm learning things
@@ -10,7 +10,7 @@ BillBill should sit between the world and a website.  With some basic rules it s
 + I know solutions already exist, but hell, with time and iterations I don't see why I can't offer something better.
 
 ## Fresh slate
-Originally I was getting kind of complicated, and trying to learn a lot of new things at once.  I was using alfred, and thinking of writing a model layer that alowed requests to be streamed into a particular field of an Alfred model for cache storage.  It was all getting a bit overburdened and cumbersome.
+Originally I was getting kind of complicated, and trying to learn a lot of new things at once.  I was using Alfred, and thinking of writing a model layer that allowed requests to be streamed into a particular field of an Alfred model for cache storage.  It was all getting a bit overburdened and cumbersome.
 
 So, I was listening to NodeUP on a trip recently and heard about the 'filed' module (https://github.com/mikeal/filed).  I decided I should use it's lovely request/response streaming capabilities to focus on getting a core project done, and enhance to something more complicated later should the need arise.
 
