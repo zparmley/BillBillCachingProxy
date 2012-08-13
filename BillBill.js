@@ -8,6 +8,31 @@ var request = require('request')
 var cacheDir = 'pagecache'
 
 
+
+// TODO: Basic congig - this will be defined externally - routes are mapleTree matchable against 'url'
+var config = [
+    {
+        host       : 'localhost:10001',
+        origin     : 'localhost:2020',
+        defaultTtl : 7200,
+        rules :      [
+            {
+                route : '/nocache*',
+                ttl :   0
+            },
+            {
+                route : '/cache5seconds*',
+                ttl :   5
+            },
+            {
+                route : '/cache100seconds*',
+                ttl :   20
+            }
+        ]
+    }
+]
+
+
 // Set up the server
 http.createServer(function(req, resp) {
     var host = req.headers['host']
