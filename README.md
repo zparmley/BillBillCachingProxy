@@ -15,15 +15,11 @@ Originally I was getting kind of complicated, and trying to learn a lot of new t
 So, I was listening to NodeUP on a trip recently and heard about the [filed](https://github.com/mikeal/filed) module.  I decided I should use it's lovely request/response streaming capabilities to focus on getting a core project done, and enhance to something more complicated later should the need arise.
 
 ## Currently
-Very simple, and not complete at all
-
-Can serve up multiple domains.
-
-Using files to house the caches
-
-Configs are simple - configure a domain name, origin, ttl and list of 'excludes' routes which mapleTree can match.
-
-I'm going to consider round one complete with in-memory indexes, meaning that if the server goes down, the caches will have to all be cleared.
++ Very simple, and not complete at all
++ Can serve up multiple domains.
++ Using files to house the caches
++ Configs are simple - configure a domain name, origin, ttl and list of 'excludes' routes which mapleTree can match.
++ I'm going to consider round one complete with in-memory indexes, meaning that if the server goes down, the caches will have to all be cleared.
 
 ## Maybe baby
 I'd like to see the cache store be something distributed, maybe memcached, so that if the scale of cached pages grows rapidly, it will be pretty simple to increase storage and make it accessible to multiple BillBill servers.
