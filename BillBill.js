@@ -15,18 +15,16 @@ var config = [
         host       : 'localhost:10001',
         origin     : 'localhost:2020',
         defaultTtl : 7200,
-        rules :      [
+        rules      : [
             {
                 route : '/nocache*',
-                ttl :   0
-            },
-            {
+                ttl   : 0
+            },{
                 route : '/cache5seconds*',
-                ttl :   5
-            },
-            {
+                ttl   : 5
+            },{
                 route : '/cache100seconds*',
-                ttl :   20
+                ttl   : 100
             }
         ]
     }
@@ -50,9 +48,9 @@ http.createServer(function(req, resp) {
 
             // TODO: I'd hoped to do something a little different, namely pipe the request to multiple destinations (file and response) but alas, it is beyond me at the moment
             // TODO: This lacks efficiency in that it reads data it technically already has out of a file
-            // TODO: I'm a little worried about a race condition with this setup, where the request is complete but the file write is not, so an incomplete file is read and set back - not sure yet if this is a problem or best sollution
+            // TODO: I'm a little worried about a race condition with this setup, where the request is complete but the file write is not, so an incomplete file is read and sent back - not sure yet if this is a problem or best sollution
 
-            // DEV Currently a server on 2020 is waitig 3 seconds and sending a simple response, for dev
+            // DEV Currently a server on 2020 is waiting 3 seconds and sending a simple response, for dev
             // Request from the origin and pipe it to the cache file
             request('http://localhost:2020', function(e, r, b) {
                 if (!e) {

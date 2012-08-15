@@ -12,7 +12,7 @@ BillBill should sit between the world and a website.  With some basic rules it s
 ## Fresh slate
 Originally I was getting kind of complicated, and trying to learn a lot of new things at once.  I was using Alfred, and thinking of writing a model layer that allowed requests to be streamed into a particular field of an Alfred model for cache storage.  It was all getting a bit overburdened and cumbersome.
 
-So, I was listening to NodeUP on a trip recently and heard about the 'filed' module (https://github.com/mikeal/filed).  I decided I should use it's lovely request/response streaming capabilities to focus on getting a core project done, and enhance to something more complicated later should the need arise.
+So, I was listening to NodeUP on a trip recently and heard about the [filed](https://github.com/mikeal/filed) module.  I decided I should use it's lovely request/response streaming capabilities to focus on getting a core project done, and enhance to something more complicated later should the need arise.
 
 ## Currently
 Very simple, and not complete at all
